@@ -24,7 +24,7 @@ const debugObject = {};
  * Water
  */
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(20, 20, 2000, 2000);
+const waterGeometry = new THREE.PlaneGeometry(20, 20, 600, 600);
 
 debugObject.depthColor = "#04D939";
 debugObject.surfaceColor = "#012340";
@@ -172,7 +172,7 @@ const particlesMaterial = new THREE.ShaderMaterial({
   vertexShader: particleVertexShader,
   fragmentShader: particleFragmentShader,
   uniforms: {
-    uSize: { value: 1.5 },
+    uSize: { value: 3 },
     uBaseColor: { value: new THREE.Color("white") },
     uTime: { value: 0 },
   },
