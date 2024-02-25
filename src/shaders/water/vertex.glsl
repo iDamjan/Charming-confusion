@@ -98,14 +98,22 @@ float cnoise(vec3 P)
 void main() {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
-    // Elevation 
+    float progresingSmallWavesElevation = 0.08;
+    progresingSmallWavesElevation += uTime * 0.01;
+    progresingSmallWavesElevation = clamp(progresingSmallWavesElevation, 0.0, 0.6);
+    
+    float progressingBigWavesElevation = 0.05;
+    progressingBigWavesElevation += uTime * 0.005;
+    progressingBigWavesElevation = clamp(progressingBigWavesElevation, 0.0, 0.4);
+
+   // Elevation 
     float elevationX = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed);
     float elevationY =  sin(modelPosition.z * uBigWavesFrequency.y + uTime * uBigWavesSpeed); 
-    float elevation = elevationX * elevationY * uBigWavesElevation;
+    float elevation = elevationX * elevationY * progressingBigWavesElevation;
 
      for(float i = 1.0; i <= uSmallIterations; i++)
     {
-        elevation -= abs(cnoise(vec3(modelPosition.xz * uSmallWavesFrequency * i, uTime * uSmallWavesSpeed)) * uSmallWavesElevation / i);
+        elevation -= abs(cnoise(vec3(modelPosition.xz * uSmallWavesFrequency * i, uTime * uSmallWavesSpeed)) * progresingSmallWavesElevation / i);
     }
 
 

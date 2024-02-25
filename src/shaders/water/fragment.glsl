@@ -12,10 +12,10 @@ void main() {
     vec3 newSurfaceColor = uSurfaceColor;
 
     newSurfaceColor.b += (sin(uTime / 30.0) - 0.5) * 2.0;
-    newSurfaceColor.r += (cos(uTime / 20.0) - 0.5) * 1.5;
+    newSurfaceColor.r += (sin(uTime / 20.0) - 0.5) * 1.5;
 
     vec3 newDepthColor = uDepthColor;
-    newDepthColor.b += (sin(uTime / 30.0) - 0.5) * 2.0;
+    newDepthColor.b -= (sin(uTime / 30.0) - 0.5) * 2.0;
     newDepthColor.r += abs((sin(uTime / 20.0) + 0.5) * 1.5);
   
 
